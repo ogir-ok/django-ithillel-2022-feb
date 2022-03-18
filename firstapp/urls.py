@@ -1,10 +1,10 @@
 from django.urls import path
 
-from .views import my_first_view
+from .views import teachers_list, teacher_classes
 
 app_name = 'firstapp'
 
 urlpatterns = [
-    path('', my_first_view),
-    path('aaaa/', my_first_view)
+    path('', teachers_list, name='teachers-list'),
+    path('<int:teacher_id>/', teacher_classes, name='teacher-classes')
 ]

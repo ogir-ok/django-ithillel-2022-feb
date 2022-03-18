@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from firstapp.views import teachers_list
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('firstapp.urls', namespace='firstapp')),
-    path('app/', include('firstapp.urls', namespace='firstapp2'))
+    path('', teachers_list),
+    path('app/lms/', include('firstapp.urls', namespace='lms')),
 ]
