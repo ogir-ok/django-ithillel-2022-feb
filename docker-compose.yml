@@ -1,0 +1,25 @@
+version: "3.0"
+
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=123
+      - PGDATA=/var/lib/postgresql/pgdata/
+      - POSTGRES_DB=ithilleldb
+    volumes:
+      - pgdata:/var/lib/postgresql/pgdata/
+    ports:
+      - 5432:5432
+  web:
+    build: .
+    volumes:
+      - .:/src/
+    depends_on:
+      - db
+    ports:
+      - 8000:8000
+    command: "python ./manage.py runserver 0.0.0.0:8000"
+
+volumes:
+  pgdata: { }
