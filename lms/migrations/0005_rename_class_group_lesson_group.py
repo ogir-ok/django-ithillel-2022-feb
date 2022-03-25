@@ -7,7 +7,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('firstapp', '0004_class_students'),
+        ('lms', '0004_class_students'),
     ]
 
     operations = [
@@ -18,6 +18,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='lesson',
             name='group',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.PROTECT, to='firstapp.group'),
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.PROTECT, to='lms.group'),
         ),
     ]

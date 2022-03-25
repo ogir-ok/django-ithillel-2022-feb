@@ -7,7 +7,11 @@
 <body>
 
 <h1> Teachers list </h1>
-<ul>
+<>
+    User: {{ request.user.name }} <br/>
+    <a href="{% url "accounts:logout" %}"> log out </a>
+     <a href="{% url "accounts:login" %}"> log in </a>
+
 {% for teacher in teachers %}
     <li><a href="{% url "lms:teacher-classes" teacher_id=teacher.id %}"> {{ teacher.name }} </a></li>
 {% endfor %}

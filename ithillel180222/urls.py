@@ -16,10 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from firstapp.views import teachers_list
+from lms.views import teachers_list
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', teachers_list),
-    path('app/lms/', include('firstapp.urls', namespace='lms')),
+    path('app/lms/', include('lms.urls', namespace='lms')),
+    path('auth/', include('authentication.urls', namespace='auth')),
+    path('accounts/', include(('django.contrib.auth.urls', 'accounts'), namespace='accounts')),
 ]

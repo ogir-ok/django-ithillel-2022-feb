@@ -1,17 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from firstapp.models import Student, Teacher, Group, Lesson
-
-
-@admin.register(Student)
-class StudentAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'birth_date')
-
-
-@admin.register(Teacher)
-class TeacherAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'birth_date')
+from lms.models import Group, Lesson
 
 
 class LessonInline(admin.StackedInline):

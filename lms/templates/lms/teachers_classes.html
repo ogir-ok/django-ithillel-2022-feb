@@ -19,9 +19,11 @@
     <p>Lessons: </p>
         <ul>
             {% for lesson in group.lessons.all %}
-                <li>{{  lesson.name }}</li>
+                <li><a href="{% url "lms:lesson-details" lesson_id=lesson.id %}"> {{  lesson.name }} </a></li>
             {% endfor %}
+            <li> <a href="{% url "lms:lesson-create" class_id=group.id %}">+ add lesson</a> </li>
         </ul>
+
 {% endfor %}
 </ul>
 

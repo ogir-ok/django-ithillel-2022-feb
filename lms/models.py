@@ -1,25 +1,13 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 
-
-class Student(models.Model):
-    name = models.CharField(max_length=255)
-    birth_date = models.DateField()
-
-    def __str__(self):
-        return self.name
-
-class Teacher(models.Model):
-    name = models.CharField(max_length=255)
-    birth_date = models.DateField()
-
-    def __str__(self):
-        return self.name
+User = get_user_model()
 
 
 class Group(models.Model):
     name = models.CharField(max_length=255)
-    teacher = models.ForeignKey(Teacher, on_delete=models.PROTECT, null=True)
-    students = models.ManyToManyField(Student)
+    teacher = models.ForeignKey(User, on_delete=models.PROTECT, null=True, related_name='teaching_groups')
+    students = models.ManyToManyField(User, related_name='studying_groups')
 
     def __str__(self):
         return self.name
