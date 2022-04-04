@@ -1,6 +1,0 @@
-pip install django
-
-django-admin startproject <projectname>
-cd <projectname>
-
-python3 manage.py runserver

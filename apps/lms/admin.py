@@ -1,7 +1,9 @@
 from django.contrib import admin
 
 # Register your models here.
-from lms.models import Group, Lesson
+from django_summernote.admin import SummernoteModelAdmin
+
+from apps.lms.models import Group, Lesson
 
 
 class LessonInline(admin.StackedInline):
@@ -15,5 +17,5 @@ class GroupAdmin(admin.ModelAdmin):
 
 
 @admin.register(Lesson)
-class LessonAdmin(admin.ModelAdmin):
+class LessonAdmin(SummernoteModelAdmin):
     list_display = ('name', 'date')

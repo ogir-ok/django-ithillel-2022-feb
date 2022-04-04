@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
+{% block content %}
 <h1> Groups list </h1>
 <ul>
-{% for group in groups %}
+{% for group in object_list %}
     <h2> {{ group.name }}</h2>
     <p>Students: </p>
         <ul>
@@ -26,6 +21,4 @@
 
 {% endfor %}
 </ul>
-
-</body>
-</html>
+{% endblock content %}
