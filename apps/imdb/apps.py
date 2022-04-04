@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class LMSConfig(AppConfig):
+class IMDBConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'apps.lms'
+    name = 'apps.imdb'

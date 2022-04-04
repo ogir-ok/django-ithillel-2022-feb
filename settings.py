@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django_summernote',
 
     'apps.lms',
-    'apps.authentication'
+    'apps.authentication',
+    'apps.imdb'
 ]
 
 
