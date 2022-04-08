@@ -1,4 +1,7 @@
 Django==4.0.2
 django-crispy-forms==1.14.0
 psycopg2-binary==2.9.3
-django-summernote==0.8.20.
+django-summernote==0.8.20
+uwsgi==2.0.20
+invoke==1.7.0
+
