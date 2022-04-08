@@ -1,8 +1,10 @@
+from bootstrap_datepicker_plus.widgets import DatePickerInput
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView
+from django_summernote.widgets import SummernoteWidget
 
 from apps.lms.models import Group, Lesson
 
@@ -36,6 +38,12 @@ class LessonCreateView(CreateView):
     model = Lesson
     fields = ['name', 'date', 'description']
     template_name = 'lms/lesson_create.html'
+
+    def get_form(self, form_class=None):
+        form = super().get_form()
+        form.fields['description'].widget = SummernoteWidget()
+        form.fields['date'].widget = DatePickerInput()
+        return form
 
     def dispatch(self, request, *args, **kwargs):
         self.group = get_object_or_404(Group, id=kwargs.get('class_id'))
