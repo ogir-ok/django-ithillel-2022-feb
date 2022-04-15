@@ -146,3 +146,6 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
+
+DEFAULT_FROM_EMAIL = 'admin@ogir-ok.com'
+SITE_URL='http://127.0.0.1:8000'
