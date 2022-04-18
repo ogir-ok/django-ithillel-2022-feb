@@ -7,6 +7,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: "install reqs"
+          command: "pip install -r requirements.txt"
+      - run:
           name: "Prospector check"
           command: "prospector apps"
 
