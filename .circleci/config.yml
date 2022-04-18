@@ -11,7 +11,7 @@ jobs:
           command: "pip install -r requirements.txt"
       - run:
           name: "install prospector"
-          command: "pip install prospector"
+          command: "pip install prospector pylint_django"
       - run:
           name: "Prospector check"
           command: "prospector apps"
