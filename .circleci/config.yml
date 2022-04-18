@@ -2,10 +2,6 @@ version: 2.1
 
 jobs:
   prospector:
-    filters:
-      branches:
-        not:
-          - main
     docker:
       - image: ogirok/ithillel-web
     steps:
@@ -21,10 +17,6 @@ jobs:
           command: "prospector apps"
 
   deploy-prod:
-    filters:
-      branches:
-        only:
-          - main
     docker:
       - image: cimg/base:stable
     steps:
@@ -51,6 +43,4 @@ jobs:
 workflows:
   check-code:
     jobs:
-      - prospector
       - deploy-prod
-
