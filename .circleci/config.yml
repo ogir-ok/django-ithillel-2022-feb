@@ -3,12 +3,12 @@ version: 2.1
 jobs:
   flake8:
     docker:
-      - image: alpine/flake8
+      - image: prospector
     steps:
       - checkout
       - run:
-          name: "Flake8 check"
-          command: "flake8"
+          name: "Prospector check"
+          command: "prospector apps"
 
 workflows:
   check-code:
