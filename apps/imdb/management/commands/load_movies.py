@@ -6,41 +6,41 @@ from apps.imdb.models import Movie
 
 
 class Command(BaseCommand):
-    help = 'Imorts movies from tsv file'
+    help = "Imorts movies from tsv file"
 
     def add_arguments(self, parser):
-        parser.add_argument('-f', '--file', type=str, required=True)
+        parser.add_argument("-f", "--file", type=str, required=True)
 
     def handle(self, *args, **options):
-        file_name = options.get('file')
+        file_name = options.get("file")
 
         if not os.path.exists(file_name):
-            print('No file exists.')
+            print("No file exists.")
 
         with open(file_name) as f:
             for line in f.readlines():
                 if not line:
                     continue
-                if not line.startswith('tt'):
+                if not line.startswith("tt"):
                     continue
-                data = line.split('\t')
+                data = line.split("\t")
 
-                if data[1] not in ('movie', 'short'):
+                if data[1] not in ("movie", "short"):
                     continue
                 date = data[5]
-                if date == '\\N':
+                if date == "\\N":
                     date = None
                 else:
-                    date = f'{date}-01-01'
+                    date = f"{date}-01-01"
                 movie_data = {
-                    'title_type': data[1],
-                    'name': data[2],
-                    'is_adult': data[4] == '1',
-                    'date': date,
-                    'genres': data[8].split(',')
+                    "title_type": data[1],
+                    "name": data[2],
+                    "is_adult": data[4] == "1",
+                    "date": date,
+                    "genres": data[8].split(","),
                 }
-                movie, created = Movie.objects.get_or_create(imdb_id=data[0],
-                    defaults=movie_data
+                movie, created = Movie.objects.get_or_create(
+                    imdb_id=data[0], defaults=movie_data
                 )
 
                 if created:

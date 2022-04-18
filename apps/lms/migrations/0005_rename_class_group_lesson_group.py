@@ -7,17 +7,19 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('lms', '0004_class_students'),
+        ("lms", "0004_class_students"),
     ]
 
     operations = [
         migrations.RenameModel(
-            old_name='Class',
-            new_name='Group',
+            old_name="Class",
+            new_name="Group",
         ),
         migrations.AddField(
-            model_name='lesson',
-            name='group',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.PROTECT, to='lms.group'),
+            model_name="lesson",
+            name="group",
+            field=models.ForeignKey(
+                null=True, on_delete=django.db.models.deletion.PROTECT, to="lms.group"
+            ),
         ),
     ]

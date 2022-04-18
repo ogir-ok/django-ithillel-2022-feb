@@ -5,4 +5,4 @@ from apps.authentication.models import User
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('id', 'email', 'name')
+    list_display = ("id", "email", "name")

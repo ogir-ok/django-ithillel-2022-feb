@@ -3,58 +3,65 @@
 from django.db import migrations, models
 from apps.authentication.models import UserManager
 
+
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('authentication', '0001_initial'),
+        ("authentication", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='user',
+            name="user",
             options={},
         ),
         migrations.AlterModelManagers(
-            name='user',
+            name="user",
             managers=[
-                ('objects', UserManager()),
+                ("objects", UserManager()),
             ],
         ),
         migrations.RemoveField(
-            model_name='user',
-            name='first_name',
+            model_name="user",
+            name="first_name",
         ),
         migrations.RemoveField(
-            model_name='user',
-            name='last_name',
+            model_name="user",
+            name="last_name",
         ),
         migrations.RemoveField(
-            model_name='user',
-            name='username',
+            model_name="user",
+            name="username",
         ),
         migrations.AddField(
-            model_name='user',
-            name='date_modified',
-            field=models.DateTimeField(auto_now=True, verbose_name='date modified'),
+            model_name="user",
+            name="date_modified",
+            field=models.DateTimeField(auto_now=True, verbose_name="date modified"),
         ),
         migrations.AddField(
-            model_name='user',
-            name='is_teacher',
-            field=models.BooleanField(default=False, help_text='Designates whether this user can teach lessons.', verbose_name='teacher'),
+            model_name="user",
+            name="is_teacher",
+            field=models.BooleanField(
+                default=False,
+                help_text="Designates whether this user can teach lessons.",
+                verbose_name="teacher",
+            ),
         ),
         migrations.AddField(
-            model_name='user',
-            name='name',
-            field=models.CharField(blank=True, max_length=255, verbose_name='first name'),
+            model_name="user",
+            name="name",
+            field=models.CharField(
+                blank=True, max_length=255, verbose_name="first name"
+            ),
         ),
         migrations.AlterField(
-            model_name='user',
-            name='date_joined',
-            field=models.DateTimeField(auto_now_add=True, verbose_name='date joined'),
+            model_name="user",
+            name="date_joined",
+            field=models.DateTimeField(auto_now_add=True, verbose_name="date joined"),
         ),
         migrations.AlterField(
-            model_name='user',
-            name='email',
-            field=models.EmailField(max_length=254, unique=True, verbose_name='email'),
+            model_name="user",
+            name="email",
+            field=models.EmailField(max_length=254, unique=True, verbose_name="email"),
         ),
     ]

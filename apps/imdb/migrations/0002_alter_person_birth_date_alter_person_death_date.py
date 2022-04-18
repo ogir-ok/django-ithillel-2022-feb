@@ -6,18 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('imdb', '0001_initial'),
+        ("imdb", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='person',
-            name='birth_date',
-            field=models.DateField(null=True, verbose_name='Birth Date'),
+            model_name="person",
+            name="birth_date",
+            field=models.DateField(null=True, verbose_name="Birth Date"),
         ),
         migrations.AlterField(
-            model_name='person',
-            name='death_date',
-            field=models.DateField(null=True, verbose_name='Death Date'),
+            model_name="person",
+            name="death_date",
+            field=models.DateField(null=True, verbose_name="Death Date"),
         ),
     ]

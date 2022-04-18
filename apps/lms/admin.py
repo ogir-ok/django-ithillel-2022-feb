@@ -12,10 +12,10 @@ class LessonInline(admin.StackedInline):
 
 @admin.register(Group)
 class GroupAdmin(admin.ModelAdmin):
-    list_display = ('name', )
-    inlines = (LessonInline, )
+    list_display = ("name",)
+    inlines = (LessonInline,)
 
 
 @admin.register(Lesson)
 class LessonAdmin(SummernoteModelAdmin):
-    list_display = ('name', 'date')
+    list_display = ("name", "date")

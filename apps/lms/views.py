@@ -13,40 +13,40 @@ User = get_user_model()
 
 class TeacherListView(ListView):
     model = User
-    template_name = 'lms/teachers_list.html'
+    template_name = "lms/teachers_list.html"
 
     def get_queryset(self):
         return super().get_queryset().filter(is_teacher=True)
 
 
 class TeacherClassesView(LoginRequiredMixin, ListView):
-    template_name = 'lms/teachers_classes.html'
+    template_name = "lms/teachers_classes.html"
     model = Group
 
     def get_queryset(self):
-        teacher_id = self.kwargs.get('teacher_id')
+        teacher_id = self.kwargs.get("teacher_id")
         return super().get_queryset().filter(teacher_id=teacher_id)
 
 
 class LessonDetailsView(LoginRequiredMixin, DetailView):
     model = Lesson
-    pk_url_kwarg = 'lesson_id'
-    template_name = 'lms/lesson_details.html'
+    pk_url_kwarg = "lesson_id"
+    template_name = "lms/lesson_details.html"
 
 
 class LessonCreateView(CreateView):
     model = Lesson
-    fields = ['name', 'date', 'description']
-    template_name = 'lms/lesson_create.html'
+    fields = ["name", "date", "description"]
+    template_name = "lms/lesson_create.html"
 
     def get_form(self, form_class=None):
         form = super().get_form()
-        form.fields['description'].widget = SummernoteWidget()
-        form.fields['date'].widget = DatePickerInput()
+        form.fields["description"].widget = SummernoteWidget()
+        form.fields["date"].widget = DatePickerInput()
         return form
 
     def dispatch(self, request, *args, **kwargs):
-        self.group = get_object_or_404(Group, id=kwargs.get('class_id'))
+        self.group = get_object_or_404(Group, id=kwargs.get("class_id"))
         return super(LessonCreateView, self).dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
@@ -56,4 +56,4 @@ class LessonCreateView(CreateView):
         return result
 
     def get_success_url(self):
-        return reverse_lazy('lms:lesson-details', kwargs={'lesson_id': self.object.id})
+        return reverse_lazy("lms:lesson-details", kwargs={"lesson_id": self.object.id})

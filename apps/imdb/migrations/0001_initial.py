@@ -9,47 +9,107 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Movie',
+            name="Movie",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('imdb_id', models.CharField(max_length=255, null=True, verbose_name='IMDB id')),
-                ('title_type', models.CharField(choices=[('short', 'Short'), ('movie', 'Movie')], max_length=255, verbose_name='Type of the title')),
-                ('name', models.CharField(max_length=255, verbose_name='Name')),
-                ('is_adult', models.BooleanField(verbose_name='Is Adult')),
-                ('date', models.DateField(null=True, verbose_name='Release Date')),
-                ('genres', django.contrib.postgres.fields.ArrayField(base_field=models.CharField(max_length=255), size=None, verbose_name='Genres')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "imdb_id",
+                    models.CharField(max_length=255, null=True, verbose_name="IMDB id"),
+                ),
+                (
+                    "title_type",
+                    models.CharField(
+                        choices=[("short", "Short"), ("movie", "Movie")],
+                        max_length=255,
+                        verbose_name="Type of the title",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255, verbose_name="Name")),
+                ("is_adult", models.BooleanField(verbose_name="Is Adult")),
+                ("date", models.DateField(null=True, verbose_name="Release Date")),
+                (
+                    "genres",
+                    django.contrib.postgres.fields.ArrayField(
+                        base_field=models.CharField(max_length=255),
+                        size=None,
+                        verbose_name="Genres",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Person',
+            name="Person",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('imdb_id', models.CharField(max_length=255, null=True, verbose_name='IMDB id')),
-                ('name', models.CharField(max_length=255, verbose_name='Name')),
-                ('birth_date', models.DateField(verbose_name='Birth Date')),
-                ('death_date', models.DateField(verbose_name='Death Date')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "imdb_id",
+                    models.CharField(max_length=255, null=True, verbose_name="IMDB id"),
+                ),
+                ("name", models.CharField(max_length=255, verbose_name="Name")),
+                ("birth_date", models.DateField(verbose_name="Birth Date")),
+                ("death_date", models.DateField(verbose_name="Death Date")),
             ],
         ),
         migrations.CreateModel(
-            name='PersonMovie',
+            name="PersonMovie",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('order', models.IntegerField(verbose_name='Ordering')),
-                ('category', models.CharField(max_length=255, verbose_name='Category')),
-                ('job', models.CharField(max_length=255, verbose_name='Job')),
-                ('characters', django.contrib.postgres.fields.ArrayField(base_field=models.CharField(max_length=255), size=None, verbose_name='Characters')),
-                ('movie', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='imdb.movie')),
-                ('person', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='imdb.person')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("order", models.IntegerField(verbose_name="Ordering")),
+                ("category", models.CharField(max_length=255, verbose_name="Category")),
+                ("job", models.CharField(max_length=255, verbose_name="Job")),
+                (
+                    "characters",
+                    django.contrib.postgres.fields.ArrayField(
+                        base_field=models.CharField(max_length=255),
+                        size=None,
+                        verbose_name="Characters",
+                    ),
+                ),
+                (
+                    "movie",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT, to="imdb.movie"
+                    ),
+                ),
+                (
+                    "person",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT, to="imdb.person"
+                    ),
+                ),
             ],
         ),
         migrations.AddField(
-            model_name='person',
-            name='movies',
-            field=models.ManyToManyField(through='imdb.PersonMovie', to='imdb.Movie'),
+            model_name="person",
+            name="movies",
+            field=models.ManyToManyField(through="imdb.PersonMovie", to="imdb.Movie"),
         ),
     ]

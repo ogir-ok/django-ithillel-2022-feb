@@ -1,0 +1,37 @@
+output-format: pylint
+
+strictness: veryhigh
+test-warnings: true
+doc-warnings: false
+
+ignore-paths:
+  - static
+  - docs
+  - client
+  - config
+  - locale
+  - staticfiles
+  - settings
+  - scripts
+  - deploy
+
+ignore-patterns:
+  - .*migrations.*
+  - .*tests.*
+
+uses:
+  - django
+  - celery
+
+pep8:
+  full: true
+  options:
+    max-line-length: 255
+
+pylint:
+  disable:
+    - line-too-long  # Already checked by pep8
+    - too-few-public-methods
+    - too-many-ancestors
+    - no-self-use
+    - cyclic-import

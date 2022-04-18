@@ -9,24 +9,31 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('lms', '0006_alter_group_students_alter_lesson_group'),
+        ("lms", "0006_alter_group_students_alter_lesson_group"),
     ]
 
     operations = [
         migrations.DeleteModel(
-            name='Student',
+            name="Student",
         ),
         migrations.AlterField(
-            model_name='group',
-            name='students',
-            field=models.ManyToManyField(related_name='studying_groups', to=settings.AUTH_USER_MODEL),
+            model_name="group",
+            name="students",
+            field=models.ManyToManyField(
+                related_name="studying_groups", to=settings.AUTH_USER_MODEL
+            ),
         ),
         migrations.AlterField(
-            model_name='group',
-            name='teacher',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.PROTECT, related_name='teaching_groups', to=settings.AUTH_USER_MODEL),
+            model_name="group",
+            name="teacher",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.PROTECT,
+                related_name="teaching_groups",
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
         migrations.DeleteModel(
-            name='Teacher',
+            name="Teacher",
         ),
     ]

@@ -12,21 +12,22 @@ User = get_user_model()
 
 class RegisterView(CreateView):
     model = User
-    template_name = 'registration/registration.html'
-    success_url = reverse_lazy('authentication:registration-success')
+    template_name = "registration/registration.html"
+    success_url = reverse_lazy("authentication:registration-success")
 
     def get_form_class(self):
         return RegistrationForm
 
 
 class RegisterSuccessView(TemplateView):
-    template_name = 'registration/registration-success.html'
+    template_name = "registration/registration-success.html"
+
 
 class RegisterActivateEmailView(TemplateView):
-    template_name = 'registration/registration-activate.html'
+    template_name = "registration/registration-activate.html"
 
     def get_context_data(self, **kwargs):
-        token = self.kwargs.get('token')
+        token = self.kwargs.get("token")
         activation_token = get_object_or_404(ActivationToken, token=token)
         activation_token.user.is_active = True
         activation_token.user.save()
