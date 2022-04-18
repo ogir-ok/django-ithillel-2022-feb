@@ -10,6 +10,9 @@ jobs:
           name: "install reqs"
           command: "pip install -r requirements.txt"
       - run:
+          name: "install prospector"
+          command: "pip install prospector"
+      - run:
           name: "Prospector check"
           command: "prospector apps"
 
