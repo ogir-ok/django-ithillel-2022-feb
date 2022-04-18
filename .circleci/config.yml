@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   prospector:
     docker:
-      - image: ckleemann/prospector
+      - image: ogirok/ithillel-web
     steps:
       - checkout
       - run:
