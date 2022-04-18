@@ -16,7 +16,43 @@ jobs:
           name: "Prospector check"
           command: "prospector apps"
 
+  deploy-prod:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - run:
+          name: "update apt"
+          command: "sudo aptget -update"
+      - run:
+          name: "Install python3-pip"
+          command: "sudo apt-get install python3-pip"
+
+      - run:
+          name: "install deploy requierements"
+          command: "pip3 install pexpect boto3"
+
+      - add_ssh_keys:
+          fingerprints:
+            - "bc:03:32:2d:49:68:94:e2:bc:3b:38:88:0f:e5:b1:26"
+
+      - run:
+          name: "start deploy"
+          command: "python3 deploy.py"
+
 workflows:
   check-code:
     jobs:
       - prospector
+        filters:
+          branches:
+            not:
+              - main
+
+  deploy:
+    jobs:
+      - deploy-prod
+          filters:
+            branches:
+              only:
+                - main
