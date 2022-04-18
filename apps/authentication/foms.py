@@ -2,9 +2,10 @@ from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 from django import forms
 from django.db import transaction
-from .tasks import send_invitation_email
 
 from apps.authentication.models import ActivationToken
+
+from .tasks import send_invitation_email
 
 User = get_user_model()
 
@@ -24,7 +25,7 @@ class RegistrationForm(forms.ModelForm):
             raise forms.ValidationError(_("Passwords mismatch"))
 
     def save(self, commit=True):
-        user = super(RegistrationForm, self).save(commit=False)
+        user = super().save(commit=False)
 
         if commit:
             user.is_active = False

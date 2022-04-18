@@ -1,0 +1,22 @@
+version: 2.1
+
+jobs:
+  prospector:
+    docker:
+      - image: ogirok/ithillel-web
+    steps:
+      - checkout
+      - run:
+          name: "install reqs"
+          command: "pip install -r requirements.txt"
+      - run:
+          name: "install prospector"
+          command: "pip install prospector pylint_django"
+      - run:
+          name: "Prospector check"
+          command: "prospector apps"
+
+workflows:
+  check-code:
+    jobs:
+      - prospector

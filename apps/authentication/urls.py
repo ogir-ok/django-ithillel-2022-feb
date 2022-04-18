@@ -1,6 +1,5 @@
 from django.urls import path
 
-from apps.authentication.foms import RegistrationForm
 from apps.authentication.views import (
     RegisterView,
     RegisterSuccessView,
