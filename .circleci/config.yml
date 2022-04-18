@@ -1,9 +1,9 @@
 version: 2.1
 
 jobs:
-  flake8:
+  prospector:
     docker:
-      - image: prospector
+      - image: ckleemann/prospector
     steps:
       - checkout
       - run:
@@ -13,4 +13,4 @@ jobs:
 workflows:
   check-code:
     jobs:
-      - flake8
+      - prospector
