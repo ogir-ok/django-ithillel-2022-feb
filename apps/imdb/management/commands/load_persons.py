@@ -1,7 +1,7 @@
 import csv
 import os.path
 
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 
 from apps.imdb.models import Person
 
@@ -18,7 +18,7 @@ class Command(BaseCommand):
         if not os.path.exists(file_name):
             print("No file exists.")
 
-        with open(file_name) as f:
+        with open(file_name, encoding='utf-8') as f:
             reader = csv.DictReader(
                 f,
                 dialect=csv.excel_tab,

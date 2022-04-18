@@ -29,6 +29,9 @@ pep8:
     max-line-length: 255
 
 pylint:
+  options:
+    good-names: "i,j,k,ex,Run,_,pk,x,y,f"
+    load-plugins: pylint_django
   disable:
     - line-too-long  # Already checked by pep8
     - too-few-public-methods
