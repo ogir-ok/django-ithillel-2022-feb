@@ -46,7 +46,7 @@ class LessonCreateView(CreateView):
         return form
 
     def dispatch(self, request, *args, **kwargs):
-        self.group = get_object_or_404(Group, id=kwargs.get("class_id"))   # noqa
+        self.group = get_object_or_404(Group, id=kwargs.get("class_id"))  # noqa
         return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):

@@ -17,7 +17,7 @@ class Command(BaseCommand):
         if not os.path.exists(file_name):
             print("No file exists.")
 
-        with open(file_name, encoding='utf-8') as f:
+        with open(file_name, encoding="utf-8") as f:
             for line in f.readlines():
                 if not line:
                     continue
