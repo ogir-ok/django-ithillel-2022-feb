@@ -20,13 +20,21 @@ class Movie(models.Model):
     date = models.DateField(_("Release Date"), null=True)
     genres = ArrayField(models.CharField(max_length=255), verbose_name=_("Genres"))
 
+    def __str__(self):
+        return f"M: {self.name}"
+
 
 class Person(models.Model):
     imdb_id = models.CharField(_("IMDB id"), max_length=255, null=True)
     name = models.CharField(_("Name"), max_length=255)
     birth_date = models.DateField(_("Birth Date"), null=True)
     death_date = models.DateField(_("Death Date"), null=True)
-    movies = models.ManyToManyField(Movie, through="PersonMovie")
+    movies = models.ManyToManyField(
+        Movie, through="PersonMovie", related_name="persons"
+    )
+
+    def __str__(self):
+        return f"P: {self.name}"
 
 
 class PersonMovie(models.Model):

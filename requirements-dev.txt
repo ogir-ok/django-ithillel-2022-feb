@@ -4,3 +4,8 @@ ipython==8.2.0
 black==22.3.0
 pre-commit==2.18.1
 prospector==1.7.7
+django-debug-toolbar==3.2.4
+coverage
+factory-boy
+mock
+patch

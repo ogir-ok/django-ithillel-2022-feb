@@ -28,6 +28,14 @@ services:
         PY_AUTORELOAD: 1
     command: /bin/bash -c 'pip install -r requirements-dev.txt && invoke run'
 
+  ui:
+    image: node:16.14.2
+    volumes:
+      - ./client:/src
+    ports:
+      - 3000:3000
+    command: /bin/bash -c "cd /src/; npm i; npm run dev"
+
   rabbitmq:
     image: rabbitmq
 
@@ -55,6 +63,7 @@ services:
       - media:/media:ro
     links:
       - web
+      - ui
     ports:
       - 8000:80
 

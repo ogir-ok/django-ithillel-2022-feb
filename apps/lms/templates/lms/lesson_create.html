@@ -1,11 +1,44 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 
+{% block extra_js %}
+
+jQuery(document).ready(function () {
+  jQuery("form").submit(function (event) {
+    var formData = {
+      name: jQuery("#id_name").val(),
+      date: jQuery("#id_date").val(),
+      description: jQuery("#id_description").val(),
+      csrfmiddlewaretoken: jQuery('[name="csrfmiddlewaretoken"]').val()
+    };
+
+
+    jQuery.ajax({
+      type: "POST",
+      url: "",
+      data: formData,
+      contentType: "application/x-www-form-urlencoded",
+      dataType: "html",
+      encode: true,
+      success: function(response) {
+        var content = jQuery(response).find('.container')
+        console.log(content)
+        jQuery(".container").html(response)
+      },
+    })
+
+    event.preventDefault();
+  });
+});
+
+{% endblock %}
+
+
 {% block content %}
-<form method="post">
+<form method="post" id="lesson-create-form">
     {% csrf_token %}
 
     {{ form | crispy }}
-    <button type="submit" class="btn btn-success">Save person</button>
+    <button id="lesson-create-btn" type="submit" class="btn btn-success">Save person</button>
 </form>
 {% endblock content %}
