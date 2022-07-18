@@ -38,7 +38,7 @@ class Command(BaseCommand):
                 pm_data = {
                     "order": int(data[1]),
                     "category": data[3],
-                    "job": data[4] if data[4] != "\\N" else "",
+                    "job": data[4] if data[4] != "\\N" else None,
                     "characters": json.loads(data[5])
                     if not data[5].startswith("\\N")
                     else None,
