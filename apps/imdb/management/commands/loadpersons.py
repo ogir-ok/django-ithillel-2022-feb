@@ -38,12 +38,16 @@ class Command(BaseCommand):
                 person_data.pop("primary_profession")
                 person_data.pop("known_for")
 
-                if person_data["birth_date"] == "\\N":
+                if person_data["birth_date"] == "birthYear":
+                    continue
+                elif person_data["birth_date"] == "\\N":
                     person_data["birth_date"] = None
                 else:
                     person_data["birth_date"] = f'{person_data["birth_date"]}-01-01'
 
-                if person_data["death_date"] == "\\N":
+                if person_data["death_date"] == "deathYear":
+                    continue
+                elif person_data["death_date"] == "\\N":
                     person_data["death_date"] = None
                 else:
                     person_data["death_date"] = f'{person_data["death_date"]}-01-01'
